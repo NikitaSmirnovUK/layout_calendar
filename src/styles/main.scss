@@ -1,25 +1,19 @@
 $day-size: 100px;
-
 $gap: 1px;
-
 $padding: 10px;
-
 $columns: 7;
-
 $day-color: #eee;
-
 $hover-color: #ffbdcb;
-
 $border-color: #000;
 
 $days: (
-  sun: 0,
-  mon: 1,
-  tue: 2,
-  wed: 3,
-  thu: 4,
-  fri: 5,
-  sat: 6,
+  sun: 6,
+  mon: 0,
+  tue: 1,
+  wed: 2,
+  thu: 3,
+  fri: 4,
+  sat: 5
 );
 
 body {
@@ -36,9 +30,7 @@ body {
   gap: $gap;
 
   width: calc(
-    #{$columns} * #{$day-size}
-    + (#{$columns} - 1) * #{$gap}
-    + #{$padding} * 2
+    #{$columns} * #{$day-size} + (#{$columns} - 1) * #{$gap} + #{$padding} * 2
   );
 
   padding: $padding;
@@ -72,16 +64,14 @@ body {
 
   @for $i from 1 through 31 {
     &__day:nth-child(#{$i})::before {
-      content: "#{$i}";
+      content: '#{$i}';
     }
   }
 
   @each $day, $index in $days {
     &--start-day-#{$day} {
       .calendar__day:first-child {
-        margin-left: calc(
-          (#{$day-size} + #{$gap}) * #{$index}
-        );
+        margin-left: calc(#{$index} * (#{$day-size} + #{$gap}));
       }
     }
   }
