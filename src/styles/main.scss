@@ -7,15 +7,14 @@ $hover-color: #ffbdcb;
 $border-color: #000;
 
 $days: (
-  sun: 6,
   mon: 0,
   tue: 1,
   wed: 2,
   thu: 3,
   fri: 4,
-  sat: 5
+  sat: 5,
+  sun: 6
 );
-
 body {
   margin: 0;
   display: flex;
@@ -69,11 +68,15 @@ body {
   }
 
   @each $day, $index in $days {
-    &--start-day-#{$day} {
-      .calendar__day:first-child {
-        margin-left: calc(#{$index} * (#{$day-size} + #{$gap}));
-      }
+  &--start-day-#{$day} {
+    .calendar__day:first-child {
+      margin-left: calc(
+        (#{$day-size} * #{$index})
+        + (#{$gap} * #{$index})
+      );
     }
+  }
+
   }
 
   @for $i from 28 through 31 {
